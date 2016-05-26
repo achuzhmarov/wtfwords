@@ -18,7 +18,7 @@ import java.security.cert.X509Certificate;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(Application.class)
 @WebIntegrationTest
-public abstract class BaseIntegrationTest {
+public abstract class BaseIT {
     @Value("${local.server.port}")
     private int port;
 
