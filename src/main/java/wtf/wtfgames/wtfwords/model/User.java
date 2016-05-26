@@ -1,10 +1,14 @@
 package wtf.wtfgames.wtfwords.model;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
+@Data
+@EqualsAndHashCode(callSuper=true)
 @Entity
 @Table(name="wtfuser")
 public class User extends BaseModel {
@@ -16,23 +20,8 @@ public class User extends BaseModel {
 
 	public User() {}
 
-	public User(String login) {
+	public User(String login, String password) {
 		this.login = login;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String name) {
-		this.login = name;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
 		this.password = password;
 	}
 }

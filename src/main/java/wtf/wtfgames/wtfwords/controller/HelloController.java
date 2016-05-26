@@ -25,9 +25,7 @@ public class HelloController {
     public User greeting(@RequestParam(value="name", defaultValue="World") String name) {
         //User user = new User(String.format(template, name));
 
-        User user = new User();
-        user.setLogin("tigra");
-        user.setPassword(passwordEncoder.encode("tigrik"));
+        User user = new User("tigra", passwordEncoder.encode("tigrik"));
 
         userDao.save(user);
 

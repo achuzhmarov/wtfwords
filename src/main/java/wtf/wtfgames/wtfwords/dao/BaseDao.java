@@ -1,7 +1,6 @@
 package wtf.wtfgames.wtfwords.dao;
 
 import com.googlecode.genericdao.dao.jpa.GenericDAOImpl;
-import com.googlecode.genericdao.search.Search;
 import com.googlecode.genericdao.search.jpa.JPASearchProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
