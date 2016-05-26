@@ -1,4 +1,4 @@
-package wtf.wtfgames.wtfwords.security;
+package wtf.wtfgames.wtfwords.security.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

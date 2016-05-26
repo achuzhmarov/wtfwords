@@ -14,9 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import wtf.wtfgames.wtfwords.security.JwtAuthenticationRequest;
+import wtf.wtfgames.wtfwords.security.model.JwtAuthenticationRequest;
 import wtf.wtfgames.wtfwords.security.JwtTokenUtil;
-import wtf.wtfgames.wtfwords.security.JwtUser;
 import wtf.wtfgames.wtfwords.security.service.JwtAuthenticationResponse;
 
 import javax.servlet.http.HttpServletRequest;

@@ -1,4 +1,4 @@
-package wtf.wtfgames.wtfwords.security;
+package wtf.wtfgames.wtfwords.security.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;

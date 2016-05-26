@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import wtf.wtfgames.wtfwords.dao.UserDao;
 import wtf.wtfgames.wtfwords.dao.exception.UserNotFoundException;
 import wtf.wtfgames.wtfwords.model.User;
-import wtf.wtfgames.wtfwords.security.JwtUser;
+import wtf.wtfgames.wtfwords.security.model.JwtUser;
 
 @Service
 public class JwtUserDetailsServiceImpl implements UserDetailsService {
