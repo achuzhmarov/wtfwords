@@ -1,20 +1,16 @@
 package wtf.wtfgames.wtfwords.integration;
 
-import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.TransactionCallbackWithoutResult;
+import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.web.client.RestTemplate;
 import wtf.wtfgames.wtfwords.Application;
-
-import javax.net.ssl.*;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.X509Certificate;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(Application.class)
@@ -28,7 +24,8 @@ public abstract class BaseIT {
     @Autowired
     private RestTemplate rest;
 
-    //private final RestTemplate rest = new TestRestTemplate();
+    @Autowired
+    TransactionTemplate transactionTemplate;
 
     private String getBaseUrl() {
         return baseUrl + ":" + port + "/";
@@ -38,38 +35,17 @@ public abstract class BaseIT {
         return rest.postForObject(getBaseUrl() + url, request, String.class);
     }
 
-    /*@BeforeClass
-    public static void disableSslVerification() {
-        try
-        {
-            // Create a trust manager that does not validate certificate chains
-            TrustManager[] trustAllCerts = new TrustManager[] {new X509TrustManager() {
-                public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-                    return null;
-                }
-                public void checkClientTrusted(X509Certificate[] certs, String authType) {
-                }
-                public void checkServerTrusted(X509Certificate[] certs, String authType) {
+    protected void runInTransaction(Runnable function) {
+        transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+            @Override
+            protected void doInTransactionWithoutResult(TransactionStatus transactionStatus) {
+                try {
+                    function.run();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    transactionStatus.setRollbackOnly();
                 }
             }
-            };
-
-            //SSLContext ctx = SSLContext.getInstance("TLS");
-            //ctx.init(new KeyManager[0], new TrustManager[] {new DefaultTrustManager()}, new SecureRandom());
-            //SSLContext.setDefault(ctx);
-
-            // Install the all-trusting trust manager
-            SSLContext sc = SSLContext.getInstance("SSL");
-            sc.init(null, trustAllCerts, new java.security.SecureRandom());
-            HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
-
-            // Create all-trusting host name verifier
-            HostnameVerifier allHostsValid = (hostname, session) -> true;
-
-            // Install the all-trusting host verifier
-            //HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
-        } catch (NoSuchAlgorithmException | KeyManagementException e) {
-            e.printStackTrace();
-        }
-    }*/
+        });
+    }
 }
