@@ -5,12 +5,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import wtf.wtfgames.wtfwords.dao.UserDao;
 import wtf.wtfgames.wtfwords.dao.exception.UserNotFoundException;
 import wtf.wtfgames.wtfwords.model.User;
 import wtf.wtfgames.wtfwords.security.model.JwtUser;
 
 @Service
+@Transactional
 public class JwtUserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired

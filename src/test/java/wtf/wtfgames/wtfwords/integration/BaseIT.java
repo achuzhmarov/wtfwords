@@ -2,6 +2,7 @@ package wtf.wtfgames.wtfwords.integration;
 
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.TestRestTemplate;
@@ -24,7 +25,10 @@ public abstract class BaseIT {
 
     private final String baseUrl = "https://localhost";
 
-    private final RestTemplate rest = new TestRestTemplate();
+    @Autowired
+    private RestTemplate rest;
+
+    //private final RestTemplate rest = new TestRestTemplate();
 
     private String getBaseUrl() {
         return baseUrl + ":" + port + "/";
@@ -34,7 +38,7 @@ public abstract class BaseIT {
         return rest.postForObject(getBaseUrl() + url, request, String.class);
     }
 
-    @BeforeClass
+    /*@BeforeClass
     public static void disableSslVerification() {
         try
         {
@@ -50,6 +54,10 @@ public abstract class BaseIT {
             }
             };
 
+            //SSLContext ctx = SSLContext.getInstance("TLS");
+            //ctx.init(new KeyManager[0], new TrustManager[] {new DefaultTrustManager()}, new SecureRandom());
+            //SSLContext.setDefault(ctx);
+
             // Install the all-trusting trust manager
             SSLContext sc = SSLContext.getInstance("SSL");
             sc.init(null, trustAllCerts, new java.security.SecureRandom());
@@ -59,9 +67,9 @@ public abstract class BaseIT {
             HostnameVerifier allHostsValid = (hostname, session) -> true;
 
             // Install the all-trusting host verifier
-            HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
+            //HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
         } catch (NoSuchAlgorithmException | KeyManagementException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 }
