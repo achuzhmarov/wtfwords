@@ -7,7 +7,10 @@ import java.io.PrintWriter;
 
 public class Program {
     public static void main(String[] args) throws Exception {
-        String pageUrl = "Го";
+        String pageUrl =
+            //"Го";
+            //"Хаббл_(телескоп)";
+            "Международная_космическая_станция";
 
         WikiParser wikiParser = new WikiParser();
 
