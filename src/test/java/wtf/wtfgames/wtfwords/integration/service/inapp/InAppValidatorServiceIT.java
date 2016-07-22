@@ -3,7 +3,7 @@ package wtf.wtfgames.wtfwords.integration.service.inapp;
 import org.junit.Test;
 import wtf.wtfgames.wtfwords.integration.BaseIT;
 
-import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class InAppValidatorServiceIT extends BaseIT {
@@ -12,6 +12,6 @@ public class InAppValidatorServiceIT extends BaseIT {
     public void validateInApp_InvalidReceipt_GetError() throws Exception {
         String result = post("ios_inapp", "test_receipt");
 
-        assertThat(result, equalTo("false"));
+        assertThat(result, containsString("false"));
     }
 }
