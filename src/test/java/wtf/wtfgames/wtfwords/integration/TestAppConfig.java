@@ -25,7 +25,7 @@ public class TestAppConfig {
     }
 
     @Bean
-    RestTemplate restTemplate() throws Exception {
+    RestTemplate testRestTemplate() throws Exception {
         SSLContext sslContext = SSLContexts.custom().loadTrustMaterial(null, new TrustSelfSignedStrategy()).build();
         SSLConnectionSocketFactory connectionFactory = new SSLConnectionSocketFactory(sslContext, new NoopHostnameVerifier());
 

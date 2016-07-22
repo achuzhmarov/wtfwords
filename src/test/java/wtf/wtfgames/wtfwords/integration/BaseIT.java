@@ -2,6 +2,7 @@ package wtf.wtfgames.wtfwords.integration;
 
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
@@ -21,7 +22,7 @@ public abstract class BaseIT {
 
     private final String baseUrl = "https://localhost";
 
-    @Autowired
+    @Autowired @Qualifier("testRestTemplate")
     private RestTemplate rest;
 
     @Autowired
