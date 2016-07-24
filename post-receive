@@ -16,7 +16,7 @@ do
         ./gradlew build -x test
 
         mkdir /home/git/wtfwords/logs
-        nohup java -jar build/libs/wtfwords-1.0-SNAPSHOT.jar > /home/git/wtfwords/logs/main.log &
+        nohup java -jar build/libs/wtfwords-1.0-SNAPSHOT.jar > /home/git/wtfwords/logs/main.log 2>&1 &
 
         echo Complete.
     fi
