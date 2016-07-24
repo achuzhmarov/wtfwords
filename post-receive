@@ -15,6 +15,7 @@ do
         java -jar build/libs/wtfwords-1.0-SNAPSHOT.jar &
     fi
 
+
     if [ "release" = "$branch" ]; then
 		export GOROOT=/usr/lib/go
 		export GOPATH=/home/git/gopath
