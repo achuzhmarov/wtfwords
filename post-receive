@@ -12,7 +12,7 @@ do
     
         ./gradlew build -x test
     
-        java -jar build/libs/wtfwords-1.0-SNAPSHOT.jar
+        java -jar build/libs/wtfwords-1.0-SNAPSHOT.jar &
     fi
 
     if [ "release" = "$branch" ]; then
