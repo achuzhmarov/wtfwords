@@ -1,7 +1,23 @@
 group 'wtf.wtfgames'
 version '1.0-SNAPSHOT'
 
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath(
+                'org.springframework.boot:spring-boot-gradle-plugin:1.3.5.RELEASE'
+        )
+    }
+}
+
 apply plugin: 'java'
+apply plugin: 'spring-boot'
+
+springBoot {
+    mainClass = "wtf.wtfgames.wtfwords.Application"
+}
 
 repositories {
     mavenCentral()
