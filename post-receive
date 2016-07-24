@@ -14,8 +14,9 @@ do
 
         chmod 770 ./gradlew
         ./gradlew build -x test
-    
-        nohup java -jar build/libs/wtfwords-1.0-SNAPSHOT.jar > /var/log/wtfwords/main.log &
+
+        mkdir /home/git/wtfwords/logs
+        nohup java -jar build/libs/wtfwords-1.0-SNAPSHOT.jar > /home/git/wtfwords/logs/main.log &
 
         echo Complete.
     fi
