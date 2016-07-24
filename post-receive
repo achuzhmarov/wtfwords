@@ -4,15 +4,20 @@ do
     branch=$(git rev-parse --symbolic --abbrev-ref $refname)
 
     if [ "master" = "$branch" ]; then
-        rm -rf /home/git/wtfwords
-        mkdir /home/git/wtfwords
+        pkill -f wtfwords-1.0-SNAPSHOT
 
+        mkdir /home/git/wtfwords
         cd /home/git/wtfwords
+
+        echo "Check out local copy"
         git --work-tree=/home/git/wtfwords --git-dir=/home/git/wtfwords.git checkout -f
-    
+
+        chmod 770 ./gradlew
         ./gradlew build -x test
     
-        java -jar build/libs/wtfwords-1.0-SNAPSHOT.jar &
+        nohup java -jar build/libs/wtfwords-1.0-SNAPSHOT.jar > /var/log/wtfwords/main.log &
+
+        echo Complete.
     fi
 
 
