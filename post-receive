@@ -22,9 +22,6 @@ do
     fi
 
     if [ "release" = "$branch" ]; then
-		export GOROOT=/usr/lib/go
-		export GOPATH=/home/git/gopath
-		export PATH=$PATH:$GOPATH/bin:$GOROOT/bin
 		export DATABASE_URL=127.0.0.1:33333
 
 		rm -rf /home/git/gopath/src/gochat
