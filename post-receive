@@ -21,7 +21,6 @@ do
         echo Complete.
     fi
 
-
     if [ "release" = "$branch" ]; then
 		export GOROOT=/usr/lib/go
 		export GOPATH=/home/git/gopath
