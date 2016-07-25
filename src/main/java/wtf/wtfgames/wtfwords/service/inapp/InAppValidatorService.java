@@ -15,10 +15,23 @@ public class InAppValidatorService {
     private RestTemplate rest;
 
     public boolean validateInAppPurchase(String receiptData) {
+        System.out.println("validating incoming receipt");
+        System.out.println(receiptData);
+
+        Boolean validProd = validateInAppPurchaseByUrl(receiptData, PROD_URI);
+
+        if (validProd) {
+            return true;
+        } else {
+            return validateInAppPurchaseByUrl(receiptData, SANDBOX_URI);
+        }
+    }
+
+    private boolean validateInAppPurchaseByUrl(String receiptData, String url) {
         InAppRequest request = new InAppRequest(receiptData);
 
         try {
-            String resultString = rest.postForObject(SANDBOX_URI, request, String.class);
+            String resultString = rest.postForObject(url, request, String.class);
 
             ObjectMapper objectMapper = new ObjectMapper();
             InAppResponse result = objectMapper.readValue(resultString, InAppResponse.class);
@@ -29,7 +42,7 @@ public class InAppValidatorService {
                 String error = getErrorByStatus(result.getStatus());
 
                 //TODO - log error
-                System.err.print(error);
+                System.err.println(error);
 
                 return false;
             }
