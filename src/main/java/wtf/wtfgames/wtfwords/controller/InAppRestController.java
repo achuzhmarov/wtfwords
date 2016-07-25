@@ -22,11 +22,27 @@ public class InAppRestController {
         }
     }
 
+    private class InAppValidateRequest {
+        private String receipt;
+
+        public InAppValidateRequest(String receipt) {
+            this.receipt = receipt;
+        }
+
+        public String getReceipt() {
+            return receipt;
+        }
+
+        public void setReceipt(String receipt) {
+            this.receipt = receipt;
+        }
+    }
+
     @Autowired
     private InAppValidatorService validatorService;
 
     @RequestMapping(value = "ios_inapp", method = RequestMethod.POST)
-    public InAppValidateResponse validate(@RequestBody String receipt) {
-        return new InAppValidateResponse(validatorService.validateInAppPurchase(receipt));
+    public InAppValidateResponse validate(@RequestBody InAppValidateRequest request) {
+        return new InAppValidateResponse(validatorService.validateInAppPurchase(request.receipt));
     }
 }
