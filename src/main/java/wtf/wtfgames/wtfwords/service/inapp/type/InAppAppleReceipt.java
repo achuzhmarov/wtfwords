@@ -1,7 +1,10 @@
-package wtf.wtfgames.wtfwords.service.inapp;
+package wtf.wtfgames.wtfwords.service.inapp.type;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class InAppAppleReceipt {
     private String bundleId;
     private String applicationVersion;

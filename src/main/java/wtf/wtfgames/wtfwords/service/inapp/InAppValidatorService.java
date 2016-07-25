@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import wtf.wtfgames.wtfwords.service.inapp.type.InAppAppleRequest;
+import wtf.wtfgames.wtfwords.service.inapp.type.InAppAppleResponse;
 
 @Service
 public class InAppValidatorService {
@@ -18,16 +20,19 @@ public class InAppValidatorService {
         System.out.println("validating incoming receipt");
         System.out.println(receiptData);
 
-        Boolean validProd = validateInAppPurchaseByUrl(receiptData, PROD_URI);
+        int errorCode = validateInAppPurchaseByUrl(receiptData, PROD_URI);
 
-        if (validProd) {
+        if (errorCode == 0) {
             return true;
+        } else if (errorCode == 21007) {
+            int devErrorCode = validateInAppPurchaseByUrl(receiptData, SANDBOX_URI);
+            return devErrorCode == 0;
         } else {
-            return validateInAppPurchaseByUrl(receiptData, SANDBOX_URI);
+            return false;
         }
     }
 
-    private boolean validateInAppPurchaseByUrl(String receiptData, String url) {
+    private int validateInAppPurchaseByUrl(String receiptData, String url) {
         InAppAppleRequest request = new InAppAppleRequest(receiptData);
 
         try {
@@ -37,20 +42,20 @@ public class InAppValidatorService {
             InAppAppleResponse result = objectMapper.readValue(resultString, InAppAppleResponse.class);
 
             if (result.getStatus() == 0) {
-                return true;
+                return 0;
             } else {
                 String error = getErrorByStatus(result.getStatus());
 
                 //TODO - log error
                 System.err.println(error);
 
-                return false;
+                return result.getStatus();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return false;
+        return 1;
     }
 
     private String getErrorByStatus(int status) {

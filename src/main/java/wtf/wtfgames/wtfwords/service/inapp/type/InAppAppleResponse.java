@@ -1,5 +1,8 @@
-package wtf.wtfgames.wtfwords.service.inapp;
+package wtf.wtfgames.wtfwords.service.inapp.type;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class InAppAppleResponse {
     private int status;
     private InAppAppleReceipt receipt;

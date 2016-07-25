@@ -1,7 +1,9 @@
-package wtf.wtfgames.wtfwords.service.inapp;
+package wtf.wtfgames.wtfwords.service.inapp.type;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class InAppAppleRequest {
     private String receiptData;
 
