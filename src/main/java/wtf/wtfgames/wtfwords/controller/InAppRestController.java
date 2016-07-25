@@ -25,8 +25,8 @@ public class InAppRestController {
     private class InAppValidateRequest {
         private String receipt;
 
-        public InAppValidateRequest(String receipt) {
-            this.receipt = receipt;
+        InAppValidateRequest() {
+
         }
 
         public String getReceipt() {
