@@ -28,13 +28,13 @@ public class InAppValidatorService {
     }
 
     private boolean validateInAppPurchaseByUrl(String receiptData, String url) {
-        InAppRequest request = new InAppRequest(receiptData);
+        InAppAppleRequest request = new InAppAppleRequest(receiptData);
 
         try {
             String resultString = rest.postForObject(url, request, String.class);
 
             ObjectMapper objectMapper = new ObjectMapper();
-            InAppResponse result = objectMapper.readValue(resultString, InAppResponse.class);
+            InAppAppleResponse result = objectMapper.readValue(resultString, InAppAppleResponse.class);
 
             if (result.getStatus() == 0) {
                 return true;

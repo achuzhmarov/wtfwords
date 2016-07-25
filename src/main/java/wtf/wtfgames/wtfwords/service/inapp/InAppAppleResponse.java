@@ -1,8 +1,8 @@
 package wtf.wtfgames.wtfwords.service.inapp;
 
-public class InAppResponse {
+public class InAppAppleResponse {
     private int status;
-    private InAppReceipt receipt;
+    private InAppAppleReceipt receipt;
 
     public int getStatus() {
         return status;
@@ -12,11 +12,11 @@ public class InAppResponse {
         this.status = status;
     }
 
-    public InAppReceipt getReceipt() {
+    public InAppAppleReceipt getReceipt() {
         return receipt;
     }
 
-    public void setReceipt(InAppReceipt receipt) {
+    public void setReceipt(InAppAppleReceipt receipt) {
         this.receipt = receipt;
     }
 }

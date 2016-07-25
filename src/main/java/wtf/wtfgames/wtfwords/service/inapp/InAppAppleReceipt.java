@@ -2,10 +2,10 @@ package wtf.wtfgames.wtfwords.service.inapp;
 
 import java.util.List;
 
-public class InAppReceipt {
+public class InAppAppleReceipt {
     private String bundleId;
     private String applicationVersion;
-    private List<InApp> inApp;
+    private List<InAppApple> inApp;
     private String originalApplicationVersion;
 
     public String getBundleId() {
@@ -24,11 +24,11 @@ public class InAppReceipt {
         this.applicationVersion = applicationVersion;
     }
 
-    public List<InApp> getInApp() {
+    public List<InAppApple> getInApp() {
         return inApp;
     }
 
-    public void setInApp(List<InApp> inApp) {
+    public void setInApp(List<InAppApple> inApp) {
         this.inApp = inApp;
     }
 
@@ -43,7 +43,7 @@ public class InAppReceipt {
     /*type Receipt struct {
         BundleId                   string            `json:"bundle_id"`
         ApplicationVersion         string            `json:"application_version"`
-        InApp                      []PurchaseReceipt `json:"in_app"`
+        InAppApple                      []PurchaseReceipt `json:"in_app"`
         OriginalApplicationVersion string            `json:"original_application_version"`
     }*/
 }

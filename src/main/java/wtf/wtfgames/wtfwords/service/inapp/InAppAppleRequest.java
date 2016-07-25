@@ -2,14 +2,14 @@ package wtf.wtfgames.wtfwords.service.inapp;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 
-public class InAppRequest {
+public class InAppAppleRequest {
     private String receiptData;
 
-    public InAppRequest() {
+    public InAppAppleRequest() {
 
     }
 
-    public InAppRequest(String receiptData) {
+    public InAppAppleRequest(String receiptData) {
         this.receiptData = receiptData;
     }
 

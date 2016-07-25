@@ -1,6 +1,6 @@
 package wtf.wtfgames.wtfwords.service.inapp;
 
-public class InApp {
+public class InAppApple {
     private String quantity;
     private String productId;
     private String transactionId;

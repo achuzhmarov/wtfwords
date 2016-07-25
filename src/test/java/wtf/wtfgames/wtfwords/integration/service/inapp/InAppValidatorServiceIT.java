@@ -1,6 +1,7 @@
 package wtf.wtfgames.wtfwords.integration.service.inapp;
 
 import org.junit.Test;
+import wtf.wtfgames.wtfwords.controller.type.InAppRequest;
 import wtf.wtfgames.wtfwords.integration.BaseIT;
 
 import static org.hamcrest.CoreMatchers.containsString;
@@ -10,7 +11,7 @@ public class InAppValidatorServiceIT extends BaseIT {
 
     @Test
     public void validateInApp_InvalidReceipt_GetError() throws Exception {
-        String result = post("ios_inapp", "test_receipt");
+        String result = post("ios_inapp", new InAppRequest("test-receipt"));
 
         assertThat(result, containsString("false"));
     }
