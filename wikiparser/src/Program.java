@@ -27,7 +27,20 @@ public class Program {
             //"Кошка";
             //"Удод";
             //"Берёза";
-            "Фотон";
+            //"Фотон";
+            //"Галактика";
+            //"Насекомые";
+            //"Арифметика";
+            //"Титаник";
+            //"Ладожское_озеро";
+            //"Карибское_море";
+            //"Ледоём";
+            //"Эконометрика";
+            //"Кикимора";
+            //"Леший";
+            //"Грош";
+            //"Но";
+            "Планеризм";
 
         WikiParser wikiParser = new WikiParser();
 
@@ -67,8 +80,8 @@ class WikiParser {
                         newSentence += sentence + ".";
                     }
 
-                    result += parseSentence(newSentence);
-                }
+                result += parseSentence(newSentence);
+            }
 
                 result += System.lineSeparator();
             }
@@ -124,8 +137,14 @@ class WikiParser {
             int startIndex = result.indexOf(begin);
             int endIndex = result.indexOf(end);
 
-            String toBeReplaced = result.substring(startIndex, endIndex + 1);
-            result = result.replace(toBeReplaced, "");
+            try {
+                String toBeReplaced = result.substring(startIndex, endIndex + 1);
+                result = result.replace(toBeReplaced, "");
+            } catch (Exception e) {
+                e.printStackTrace();
+                //return same result for manual analysis
+                break;
+            }
         }
 
         return result;
