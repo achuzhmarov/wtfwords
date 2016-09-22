@@ -20,11 +20,9 @@ do
     fi
 
     if [ "release" = "$branch" ]; then
-
-	git push prod release -f
-
+        git push prod release -f
         echo Complete.
-     fi
+    fi
 done
 
 

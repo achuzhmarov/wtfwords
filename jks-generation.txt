@@ -1,0 +1,2 @@
+openssl pkcs12 -export -in wtfwords.crt -inkey wtfwords.key -certfile wtfwords.crt -out wtfwords.p12
+"C:\Program Files\Java\jdk1.8.0_91\bin\keytool" -importkeystore -srckeystore wtfwords.p12 -srcstoretype pkcs12 -destkeystore wtfwords.jks -deststoretype JKS
