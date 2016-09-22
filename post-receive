@@ -4,8 +4,6 @@ do
     branch=$(git rev-parse --symbolic --abbrev-ref $refname)
 
     if [ "master" = "$branch" ]; then
-        pkill -f wtfwords-1.0-SNAPSHOT
-
         mkdir /home/git/wtfwords
         cd /home/git/wtfwords
 
@@ -16,12 +14,16 @@ do
         ./gradlew build -x test
 
         mkdir /home/git/wtfwords/logs
-        nohup java -jar build/libs/wtfwords-1.0-SNAPSHOT.jar > /home/git/wtfwords/logs/main.log 2>&1 &
+        service wtfwords restart
 
         echo Complete.
     fi
 
+
     if [ "release" = "$branch" ]; then
+		export GOROOT=/usr/lib/go
+		export GOPATH=/home/git/gopath
+		export PATH=$PATH:$GOPATH/bin:$GOROOT/bin
 		export DATABASE_URL=127.0.0.1:33333
 
 		rm -rf /home/git/gopath/src/gochat
