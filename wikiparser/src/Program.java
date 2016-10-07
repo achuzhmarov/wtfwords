@@ -38,13 +38,64 @@ public class Program {
             //"Кикимора";
             //"Леший";
             //"Грош";
-            "Планеризм";
+            //"Планеризм";
+
+            //"DNA";
+            //"Evolution";
+            //"Metabolism";
+            //"Virus";
+            //"Genetics";
+            //"Dodo";
+            //"Emu";
+            //"Tyrannosaurus";
+            //"Frog";
+            //"Oxygen";
+            //"Titanium";
+            //"Helium";
+            //"Diamond";
+            //"Cabbage";
+            //"Sea";
+            //"Lion";
+            //"Koala";
+            //"Raccoon";
+            //"Blue_whale";
+            //"Elephant";
+            //"Atheism";
+            //"Kitsune";
+            //"Vampire";
+            //"Gliding";
+            //"Space_Invaders";
+            //"Japan";
+            //"Canada";
+            //"Irish_phonology";
+            //"Batman";
+            //"Archimedes";
+            //"Firefly_(TV_series)";
+            //"Jack_Sparrow";
+            //"Tropical_cyclone";
+            //"Tornado";
+            //"Wind";
+            //"Confirmation_bias";
+            //"Asteroid_belt";
+            //"Atom";
+            //"Big_Bang";
+            //"Dwarf_planet";
+            //"Earth";
+            //"Electron";
+            //"Galaxy";
+            //"Hubble_Space_Telescope";
+            //"Jupiter";
+            //"Moon";
+            //"Saturn";
+            //"Sun";
+            //"Star";
+            "Mercury_(planet)";
 
         WikiParser wikiParser = new WikiParser();
 
         String result = wikiParser.parseWikiPage(pageUrl);
 
-        try(  PrintWriter out = new PrintWriter("test.txt")  ){
+        try(  PrintWriter out = new PrintWriter(pageUrl.toLowerCase().replace("_", "") + ".txt")  ){
             out.print( result.trim() );
         }
     }
@@ -52,10 +103,14 @@ public class Program {
 
 class WikiParser {
     private static int MIN_CHARS_IN_SENTENCE = 20;
-    private String baseWikiLink = "https://ru.wikipedia.org/wiki/";
+    //private String baseWikiLink = "https://ru.wikipedia.org/wiki/";
+    private String baseWikiLink = "https://en.wikipedia.org/wiki/";
 
     public String parseWikiPage(String pageUrl) {
-        String result = "";
+        String result = pageUrl;
+        result += System.lineSeparator();
+        result += pageUrl.replace("_", " ");
+        result += System.lineSeparator();
 
         try {
             Document doc = Jsoup.connect(baseWikiLink + pageUrl).get();
@@ -63,6 +118,7 @@ class WikiParser {
 
             for (Element element: body) {
                 String text = element.text();
+
                 if (text.length() > 0) {
                     String preparedText = cutSquareLinks(text);
                     String[] sentences = preparedText.split("\\.");
@@ -78,8 +134,8 @@ class WikiParser {
                         newSentence += sentence + ".";
                     }
 
-                result += parseSentence(newSentence);
-            }
+                    result += parseSentence(newSentence);
+                }
 
                 result += System.lineSeparator();
             }
