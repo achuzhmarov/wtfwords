@@ -4,10 +4,11 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.PrintWriter;
+import java.util.List;
 
 public class Program {
     public static void main(String[] args) throws Exception {
-        String pageUrl =
+        String title =
             //"Го";
             //"Хаббл_(телескоп)";
             //"Международная_космическая_станция";
@@ -39,6 +40,8 @@ public class Program {
             //"Леший";
             //"Грош";
             //"Планеризм";
+            //"Мозжечок";
+            "Двустворчатые";
 
             //"DNA";
             //"Evolution";
@@ -89,13 +92,13 @@ public class Program {
             //"Saturn";
             //"Sun";
             //"Star";
-            "Mercury_(planet)";
+            //"Mercury_(planet)";
 
         WikiParser wikiParser = new WikiParser();
 
-        String result = wikiParser.parseWikiPage(pageUrl);
+        String result = wikiParser.parseWikiPage(title);
 
-        try(  PrintWriter out = new PrintWriter(pageUrl.toLowerCase().replace("_", "") + ".txt")  ){
+        try(  PrintWriter out = new PrintWriter(title.toLowerCase().replace("_", "") + ".txt")  ){
             out.print( result.trim() );
         }
     }
@@ -103,17 +106,17 @@ public class Program {
 
 class WikiParser {
     private static int MIN_CHARS_IN_SENTENCE = 20;
-    //private String baseWikiLink = "https://ru.wikipedia.org/wiki/";
-    private String baseWikiLink = "https://en.wikipedia.org/wiki/";
+    private String baseWikiLink = "https://ru.wikipedia.org/wiki/";
+    //private String baseWikiLink = "https://en.wikipedia.org/wiki/";
 
-    public String parseWikiPage(String pageUrl) {
-        String result = pageUrl;
+    public String parseWikiPage(String title) {
+        String result = title;
         result += System.lineSeparator();
-        result += pageUrl.replace("_", " ");
+        result += title.replace("_", " ");
         result += System.lineSeparator();
 
         try {
-            Document doc = Jsoup.connect(baseWikiLink + pageUrl).get();
+            Document doc = Jsoup.connect(baseWikiLink + title).get();
             Elements body = doc.select("#mw-content-text > p");
 
             for (Element element: body) {
@@ -127,17 +130,15 @@ class WikiParser {
 
                     for (String sentence: sentences) {
                         if (isNewSentence(sentence, newSentence)) {
-                            result += parseSentence(newSentence);
+                            result += parseSentence(newSentence, title);
                             newSentence = "";
                         }
 
                         newSentence += sentence + ".";
                     }
 
-                    result += parseSentence(newSentence);
+                    result += parseSentence(newSentence, title);
                 }
-
-                result += System.lineSeparator();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -146,14 +147,43 @@ class WikiParser {
         return result;
     }
 
-    private String parseSentence(String sentence) {
-        if (sentence.length() == 0) {
+    private String parseSentence(String sentence, String title) {
+        if (sentence.length() == 0 || sentence.length() > 180) {
+            return "";
+        }
+
+        if (noTitleInSentence(sentence, title)) {
             return "";
         }
 
         System.out.println(sentence.length());
 
-        return sentence.trim() + System.lineSeparator();
+        return sentence.trim().replace(" .", ".") + System.lineSeparator();
+    }
+
+    private boolean noTitleInSentence(String sentence, String title) {
+        String[] titleParts = title.split("_");
+
+        for (String titlePart: titleParts) {
+            //check if sentence contains at least one word from title
+            if (containsTitle(sentence, titlePart)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private boolean containsTitle(String sentence, String title) {
+        int halfTitleIndex = Math.min(4, title.length() / 2 + title.length() % 2);
+
+        String firstHalfOfTitle = title.substring(0, halfTitleIndex).toLowerCase();
+
+        if (sentence.toLowerCase().contains(firstHalfOfTitle)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private boolean isNewSentence(String sentence, String prevSentence) {
