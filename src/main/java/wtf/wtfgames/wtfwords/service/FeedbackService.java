@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import wtf.wtfgames.wtfwords.service.basic.MailService;
 
+import javax.mail.MessagingException;
+
 @Service
 public class FeedbackService {
     @Autowired
@@ -13,7 +15,7 @@ public class FeedbackService {
     @Value("${smtp.support.email}")
     private String supportEmail;
 
-    public void sendFeedback(String fromId, String fromEmail, String text) {
+    public void sendFeedback(String fromId, String fromEmail, String text) throws MessagingException {
         String subject = "IOS FeedbackRequest from ";
 
         if (fromEmail != null && fromEmail.length() > 0) {
