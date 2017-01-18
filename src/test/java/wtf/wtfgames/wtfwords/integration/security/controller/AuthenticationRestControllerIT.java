@@ -21,6 +21,13 @@ public class AuthenticationRestControllerIT extends BaseIT {
 
     @Test
     public void testLogin() throws Exception {
+        String message = post("login", new JwtAuthenticationRequest("test_user"));
+
+        assertThat(message, containsString("token"));
+    }
+
+    /*@Test
+    public void testLoginWithPassword() throws Exception {
         runInTransaction(() -> {
             User user = new User("test_user", passwordEncoder.encode("password"));
             userDao.save(user);
@@ -29,5 +36,5 @@ public class AuthenticationRestControllerIT extends BaseIT {
         String message = post("login", new JwtAuthenticationRequest("test_user", "password"));
 
         assertThat(message, containsString("token"));
-    }
+    }*/
 }

@@ -3,9 +3,7 @@ package wtf.wtfgames.wtfwords.controller.type;
 public class InAppResponse {
     private boolean valid;
 
-    public InAppResponse() {
-
-    }
+    public InAppResponse() {}
 
     public InAppResponse(boolean valid) {
         this.valid = valid;

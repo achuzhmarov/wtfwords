@@ -1,5 +1,6 @@
 package wtf.wtfgames.wtfwords.integration;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -33,7 +34,9 @@ public abstract class BaseIT {
     }
 
     protected String post(String url, Object request) {
-        return rest.postForObject(getBaseUrl() + url, request, String.class);
+        String result = rest.postForObject(getBaseUrl() + url, request, String.class);
+        System.out.println(result);
+        return result;
     }
 
     protected void runInTransaction(Runnable function) {
@@ -48,5 +51,10 @@ public abstract class BaseIT {
                 }
             }
         });
+    }
+
+    @Test
+    public void emptyTest() throws Exception {
+
     }
 }

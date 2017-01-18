@@ -20,6 +20,11 @@ public class JwtUser implements UserDetails {
         this.password = user.getPassword();
     }
 
+    public JwtUser(String login, String password) {
+        this.login = login;
+        this.password = password;
+    }
+
     @Override
     public String getUsername() {
         return login;

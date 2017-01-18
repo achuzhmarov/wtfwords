@@ -10,4 +10,8 @@ import lombok.NoArgsConstructor;
 public class JwtAuthenticationRequest {
     private String login;
     private String password;
+
+    public JwtAuthenticationRequest(String login) {
+        this.login = login;
+    }
 }

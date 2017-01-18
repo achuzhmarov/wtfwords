@@ -7,7 +7,7 @@ import wtf.wtfgames.wtfwords.controller.type.InAppResponse;
 import wtf.wtfgames.wtfwords.service.inapp.InAppValidatorService;
 
 @RestController
-public class InAppRestController {
+public class InAppController {
     @Autowired
     private InAppValidatorService validatorService;
 

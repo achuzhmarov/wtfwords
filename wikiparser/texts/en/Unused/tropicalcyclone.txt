@@ -115,8 +115,8 @@ From hydrostatic balance, the warm core translates to lower pressure at the cent
 Due to surface friction, the inflow only partially conserves angular momentum.
 Thus, the sea surface lower boundary acts as both a source (evaporation) and sink (friction) of energy for the system.
 This fact leads to the existence of a theoretical upper bound on the strongest wind speed that a tropical cyclone can attain.
-Because evaporation increases linearly with wind speed (just as climbing out of a pool feels much colder on a windy day), there is a positive feedback on energy input into the system known as the Wind-Induced Surface Heat Exchange (WISHE) feedback.
-This feedback is offset when frictional dissipation, which increases with the cube of the wind speed, becomes sufficiently large.
+Because evaporation increases linearly with wind speed (just as climbing out of a pool feels much colder on a windy day), there is a positive feedbackRequest on energy input into the system known as the Wind-Induced Surface Heat Exchange (WISHE) feedbackRequest.
+This feedbackRequest is offset when frictional dissipation, which increases with the cube of the wind speed, becomes sufficiently large.
 This upper bound is called the "maximum potential intensity", v p {\displaystyle v_{p}} , and is given by.
 
 where T s {\displaystyle T_{s}} is the temperature of the sea surface, T o {\displaystyle T_{o}} is the temperature of the outflow (), Δ k {\displaystyle \Delta k} is the enthalpy difference between the surface and the overlying air (), and C k {\displaystyle C_{k}} and C d {\displaystyle C_{d}} are the surface exchange coefficients (dimensionless) of enthalpy and momentum, respectively.
@@ -175,7 +175,7 @@ However, this relationship is indirect via the large-scale dynamics of the tropi
 
 The passage of a tropical cyclone over the ocean causes the upper layers of the ocean to cool substantially, which can influence subsequent cyclone development.
 This cooling is primarily caused by wind-driven mixing of cold water from deeper in the ocean with the warm surface waters.
-This effect results in a negative feedback process that can inhibit further development or lead to weakening.
+This effect results in a negative feedbackRequest process that can inhibit further development or lead to weakening.
 Additional cooling may come in the form of cold water from falling raindrops (this is because the atmosphere is cooler at higher altitudes).
 Cloud cover may also play a role in cooling the ocean, by shielding the ocean surface from direct sunlight before and slightly after the storm passage.
 All these effects can combine to produce a dramatic drop in sea surface temperature over a large area in just a few days.
@@ -238,7 +238,7 @@ Additionally, tropical cyclone motion can be influenced by transient weather sys
 
 In addition to environmental steering, a tropical cyclone will tend to drift slowly poleward and westward, a motion known as "beta drift".
 This motion is due to the superposition of a vortex, such as a tropical cyclone, onto an environment in which the Coriolis force varies with latitude, such as on a sphere or beta plane.
-It is induced indirectly by the storm itself, the result of a feedback between the cyclonic flow of the storm and its environment.
+It is induced indirectly by the storm itself, the result of a feedbackRequest between the cyclonic flow of the storm and its environment.
 
 Physically, the cyclonic circulation of the storm advects environmental air poleward east of center and equatorial west of center.
 Because air must conserve its angular momentum, this flow configuration induces a cyclonic gyre equatorward and westward of the storm center and an anticyclonic gyre poleward and eastward of the storm center.
@@ -290,7 +290,7 @@ The project was dropped after it was discovered that eyewall replacement cycles 
 Today, it is known that silver iodide seeding is not likely to have an effect because the amount of supercooled water in the rainbands of a tropical cyclone is too low.
 
 Other approaches have been suggested over time, including cooling the water under a tropical cyclone by towing icebergs into the tropical oceans.
-Other ideas range from covering the ocean in a substance that inhibits evaporation, dropping large quantities of ice into the eye at very early stages of development (so that the latent heat is absorbed by the ice, instead of being converted to kinetic energy that would feed the positive feedback loop), or blasting the cyclone apart with nuclear weapons.
+Other ideas range from covering the ocean in a substance that inhibits evaporation, dropping large quantities of ice into the eye at very early stages of development (so that the latent heat is absorbed by the ice, instead of being converted to kinetic energy that would feed the positive feedbackRequest loop), or blasting the cyclone apart with nuclear weapons.
 Project Cirrus even involved throwing dry ice on a cyclone.
 These approaches all suffer from one flaw above many others: tropical cyclones are simply too large and short-lived for any of the weakening techniques to be practical.
 

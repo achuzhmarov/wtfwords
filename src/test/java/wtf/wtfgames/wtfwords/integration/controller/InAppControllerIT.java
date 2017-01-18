@@ -1,4 +1,4 @@
-package wtf.wtfgames.wtfwords.integration.service.inapp;
+package wtf.wtfgames.wtfwords.integration.controller;
 
 import org.junit.Test;
 import wtf.wtfgames.wtfwords.controller.type.InAppRequest;
@@ -7,7 +7,7 @@ import wtf.wtfgames.wtfwords.integration.BaseIT;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class InAppValidatorServiceIT extends BaseIT {
+public class InAppControllerIT extends BaseIT {
 
     @Test
     public void validateInApp_InvalidReceipt_GetFalse() throws Exception {
