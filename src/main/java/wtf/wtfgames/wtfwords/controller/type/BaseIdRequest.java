@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class StatusResponse {
-    private boolean success;
+public class BaseIdRequest {
+    private String id;
 }

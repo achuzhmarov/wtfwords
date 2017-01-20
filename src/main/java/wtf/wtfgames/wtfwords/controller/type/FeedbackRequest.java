@@ -1,29 +1,13 @@
 package wtf.wtfgames.wtfwords.controller.type;
 
-public class FeedbackRequest extends BaseRequest{
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class FeedbackRequest extends BaseIdRequest {
     private String fromEmail;
     private String text;
-
-    public FeedbackRequest() {}
-
-    public FeedbackRequest(String fromEmail, String text) {
-        this.fromEmail = fromEmail;
-        this.text = text;
-    }
-
-    public String getFromEmail() {
-        return fromEmail;
-    }
-
-    public void setFromEmail(String fromEmail) {
-        this.fromEmail = fromEmail;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
 }

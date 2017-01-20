@@ -1,19 +1,12 @@
 package wtf.wtfgames.wtfwords.controller.type;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class InAppResponse {
     private boolean valid;
-
-    public InAppResponse() {}
-
-    public InAppResponse(boolean valid) {
-        this.valid = valid;
-    }
-
-    public boolean isValid() {
-        return valid;
-    }
-
-    public void setValid(boolean valid) {
-        this.valid = valid;
-    }
 }

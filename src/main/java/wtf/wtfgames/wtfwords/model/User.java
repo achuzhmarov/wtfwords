@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Data
 @EqualsAndHashCode(callSuper=true)
 @Entity
-@Table(name="wtfuser")
+@Table(name="testuser")
 public class User extends BaseModel {
 	@Column(name="login")
     private String login;

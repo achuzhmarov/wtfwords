@@ -1,21 +1,12 @@
 package wtf.wtfgames.wtfwords.controller.type;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class InAppRequest {
     private String receipt;
-
-    public InAppRequest() {
-
-    }
-
-    public InAppRequest(String receipt) {
-        this.receipt = receipt;
-    }
-
-    public String getReceipt() {
-        return receipt;
-    }
-
-    public void setReceipt(String receipt) {
-        this.receipt = receipt;
-    }
 }

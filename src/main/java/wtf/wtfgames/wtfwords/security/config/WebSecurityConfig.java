@@ -70,7 +70,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll()
                 .antMatchers("/ios_inapp").permitAll()
                 .antMatchers("/feedback").permitAll()
-                .antMatchers("/prize").permitAll()
+                .antMatchers("/reward_code").permitAll()
+                .antMatchers("/personal_reward").permitAll()
                 .antMatchers("/test").permitAll()
                 .anyRequest().authenticated();
 
