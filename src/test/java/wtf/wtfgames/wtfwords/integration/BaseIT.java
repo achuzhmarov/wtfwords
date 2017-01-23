@@ -1,5 +1,6 @@
 package wtf.wtfgames.wtfwords.integration;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,10 @@ import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.web.client.RestTemplate;
 import wtf.wtfgames.wtfwords.Application;
+import wtf.wtfgames.wtfwords.dao.AcquiredRewardDao;
+import wtf.wtfgames.wtfwords.dao.PersonalRewardDao;
+import wtf.wtfgames.wtfwords.dao.RewardDao;
+import wtf.wtfgames.wtfwords.model.Reward;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(Application.class)
@@ -53,8 +58,21 @@ public abstract class BaseIT {
         });
     }
 
-    @Test
-    public void emptyTest() throws Exception {
+    @Autowired
+    AcquiredRewardDao acquiredRewardDao;
 
+    @Autowired
+    RewardDao rewardDao;
+
+    @Autowired
+    PersonalRewardDao personalRewardDao;
+
+    @Before
+    public void clearDataFromDatabase() {
+        runInTransaction(() -> {
+            acquiredRewardDao.clear();
+            rewardDao.clear();
+            personalRewardDao.clear();
+        });
     }
 }

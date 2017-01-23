@@ -55,4 +55,9 @@ public class FeedbackControllerIT extends BaseIT {
 
         assertThat(result, containsString("true"));
     }*/
+
+    @Test
+    public void emptyTest() throws Exception {
+
+    }
 }
