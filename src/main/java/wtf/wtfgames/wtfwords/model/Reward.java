@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.Type;
 import org.joda.time.LocalDate;
 
 import javax.persistence.*;
@@ -28,6 +29,7 @@ public class Reward extends BaseModel {
     private Long usesLimit;
 
     @Column(name="time_limit")
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
     private LocalDate timeLimit;
 
     @Transient
