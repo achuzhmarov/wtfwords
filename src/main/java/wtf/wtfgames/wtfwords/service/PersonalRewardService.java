@@ -23,7 +23,7 @@ public class PersonalRewardService {
         if (!personalRewards.isEmpty()) {
             PersonalReward personalReward = personalRewards.get(0);
             personalReward.setAcquired(true);
-            personalRewardDao.save(personalReward);
+            //personalRewardDao.save(personalReward);
 
             return personalReward;
         } else {

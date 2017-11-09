@@ -1,14 +1,13 @@
 package wtf.wtfgames.wtfwords.integration;
 
 import org.junit.Before;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.WebIntegrationTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
@@ -17,11 +16,9 @@ import wtf.wtfgames.wtfwords.Application;
 import wtf.wtfgames.wtfwords.dao.AcquiredRewardDao;
 import wtf.wtfgames.wtfwords.dao.PersonalRewardDao;
 import wtf.wtfgames.wtfwords.dao.RewardDao;
-import wtf.wtfgames.wtfwords.model.Reward;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(Application.class)
-@WebIntegrationTest
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = Application.class, webEnvironment = WebEnvironment.DEFINED_PORT)
 public abstract class BaseIT {
     @Value("${local.server.port}")
     private int port;
@@ -70,9 +67,9 @@ public abstract class BaseIT {
     @Before
     public void clearDataFromDatabase() {
         runInTransaction(() -> {
-            acquiredRewardDao.clear();
+            /*acquiredRewardDao.clear();
             rewardDao.clear();
-            personalRewardDao.clear();
+            personalRewardDao.clear();*/
         });
     }
 }

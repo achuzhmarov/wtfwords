@@ -1,19 +1,24 @@
-group 'wtf.wtfgames'
-version '1.0-SNAPSHOT'
+group "wtf.wtfgames"
+version "1.0-SNAPSHOT"
 
 buildscript {
     repositories {
         jcenter()
     }
+
+    ext {
+        springBootVersion = "1.5.8.RELEASE"
+    }
+
     dependencies {
         classpath(
-                'org.springframework.boot:spring-boot-gradle-plugin:1.3.5.RELEASE'
+                "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
         )
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'spring-boot'
+apply plugin: "java"
+apply plugin: "org.springframework.boot"
 
 springBoot {
     mainClass = "wtf.wtfgames.wtfwords.Application"
@@ -24,31 +29,30 @@ repositories {
 }
 
 dependencies {
-    compile 'org.springframework.boot:spring-boot-starter-data-jpa:1.3.5.RELEASE'
-    compile 'org.springframework.boot:spring-boot-starter-web:1.3.5.RELEASE'
-    compile 'org.springframework.boot:spring-boot-starter-security:1.3.5.RELEASE'
-    compile 'org.springframework.boot:spring-boot-starter-mail:1.3.5.RELEASE'
+    compile "org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"
+    compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+    compile "org.springframework.boot:spring-boot-starter-security:$springBootVersion"
+    compile "org.springframework.boot:spring-boot-starter-mail:$springBootVersion"
 
-    compile 'com.googlecode.genericdao:dao:1.2.0'
-    compile 'com.googlecode.genericdao:search-jpa-hibernate:1.2.0'
+    //compile "com.googlecode.genericdao:dao:1.2.0"
+    //compile "com.googlecode.genericdao:search-jpa-hibernate:1.2.0"
 
-    compile 'io.jsonwebtoken:jjwt:0.6.0'
+    compile "io.jsonwebtoken:jjwt:0.9.0"
 
-    compile 'org.projectlombok:lombok:1.16.8'
+    compile "org.projectlombok:lombok:1.16.18"
 
-    runtime 'org.postgresql:postgresql:9.4.1208.jre7'
+    runtime "org.postgresql:postgresql:42.1.4"
 
-    testCompile 'org.springframework.boot:spring-boot-starter-test:1.3.5.RELEASE'
+    testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
+    testCompile "org.hsqldb:hsqldb:2.4.0"
 
-    compile 'org.hsqldb:hsqldb:2.3.4'
-    //testCompile 'org.hsqldb:hsqldb:2.3.4'
+    compile "org.apache.httpcomponents:httpclient:4.5.3"
 
-    compile 'org.apache.httpcomponents:httpclient:4.5.2'
-    compile 'org.apache.httpcomponents:httpcore:4.4.5'
+    compile "joda-time:joda-time:2.9.9"
 
-    compile 'joda-time:joda-time:2.9.7'
-    compile 'org.jadira.usertype:usertype.core:4.0.0.GA'
+    //It is important to get the right version for hibernate getting from spring dependency
+    compile ("org.jadira.usertype:usertype.core:5.0.0.GA")
 
     //For wiki parser
-    compile 'org.jsoup:jsoup:1.9.2'
+    compile "org.jsoup:jsoup:1.11.1"
 }

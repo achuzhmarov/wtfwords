@@ -1,7 +1,5 @@
 package wtf.wtfgames.wtfwords.dao;
 
-import com.googlecode.genericdao.dao.jpa.GenericDAOImpl;
-import com.googlecode.genericdao.search.jpa.JPASearchProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -10,7 +8,8 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
-public class BaseDao<T> extends GenericDAOImpl<T, Long> {
+public class BaseDao<T> { //extends GenericDAOImpl<T, Long> {
+	/*
 	@Override
 	@PersistenceContext
 	public void setEntityManager(EntityManager entityManager) {
@@ -26,4 +25,5 @@ public class BaseDao<T> extends GenericDAOImpl<T, Long> {
 	public void clear() {
 		remove((T[]) findAll().toArray());
 	}
+	*/
 }

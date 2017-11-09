@@ -33,11 +33,11 @@ public class RewardService {
     @Transactional
     public void claimReward(Reward reward, String userId) {
         AcquiredReward acquiredReward = new AcquiredReward(userId, reward);
-        acquiredRewardDao.save(acquiredReward);
+        //acquiredRewardDao.save(acquiredReward);
 
         if (reward.getUsesLimit() != null) {
             reward.setUsesLimit(reward.getUsesLimit() - 1);
-            rewardDao.save(reward);
+            //rewardDao.save(reward);
         }
     }
 }

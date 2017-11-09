@@ -1,6 +1,5 @@
 package wtf.wtfgames.wtfwords.dao;
 
-import com.googlecode.genericdao.search.Search;
 import org.springframework.stereotype.Repository;
 import wtf.wtfgames.wtfwords.model.Reward;
 
@@ -9,7 +8,7 @@ import java.util.List;
 @Repository
 public class RewardDao extends BaseDao<Reward> {
     public Reward getByCode(String code) {
-        Search search = new Search()
+        /*Search search = new Search()
                 .addFilterEqual("code", code);
 
         List<Reward> rewards = search(search);
@@ -19,5 +18,8 @@ public class RewardDao extends BaseDao<Reward> {
         } else {
             return null;
         }
+        */
+
+        return null;
     }
 }

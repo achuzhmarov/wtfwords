@@ -31,7 +31,7 @@ public class PersonalRewardControllerIT extends BaseIT {
     public void checkReward_OneReward_GetReward() throws Exception {
         runInTransaction(() -> {
             PersonalReward personalReward = PersonalReward.builder().userId("TEST_ID").message("Thank you!").wtfs(50).acquired(false).build();
-            personalRewardDao.save(personalReward);
+            //personalRewardDao.save(personalReward);
         });
 
         BaseIdRequest request = new BaseIdRequest("TEST_ID");
@@ -50,8 +50,8 @@ public class PersonalRewardControllerIT extends BaseIT {
         runInTransaction(() -> {
             PersonalReward personalReward = PersonalReward.builder().userId("TEST_ID").message("Thank you!").wtfs(50).acquired(false).build();
             PersonalReward personalReward2 = PersonalReward.builder().userId("TEST_ID").message("Thank you too!").wtfs(100).acquired(false).build();
-            personalRewardDao.save(personalReward);
-            personalRewardDao.save(personalReward2);
+            //personalRewardDao.save(personalReward);
+            //personalRewardDao.save(personalReward2);
         });
 
         BaseIdRequest request = new BaseIdRequest("TEST_ID");
@@ -74,7 +74,7 @@ public class PersonalRewardControllerIT extends BaseIT {
     public void checkReward_OneReward_GetOnlyOnce() throws Exception {
         runInTransaction(() -> {
             PersonalReward personalReward = PersonalReward.builder().userId("TEST_ID").acquired(false).build();
-            personalRewardDao.save(personalReward);
+            //personalRewardDao.save(personalReward);
         });
 
         BaseIdRequest request = new BaseIdRequest("TEST_ID");
@@ -91,7 +91,7 @@ public class PersonalRewardControllerIT extends BaseIT {
     public void checkReward_AquiredReward_CanNotGetIt() throws Exception {
         runInTransaction(() -> {
             PersonalReward personalReward = PersonalReward.builder().userId("TEST_ID").acquired(true).build();
-            personalRewardDao.save(personalReward);
+            //personalRewardDao.save(personalReward);
         });
 
         BaseIdRequest request = new BaseIdRequest("TEST_ID");

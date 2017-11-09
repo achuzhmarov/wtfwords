@@ -36,7 +36,7 @@ public class RewardControllerIT extends BaseIT {
     public void getReward_UnlimitedReward_RewardClaimed() throws Exception {
         runInTransaction(() -> {
             Reward reward = Reward.builder().message("Thank you!").code("TEST_CODE").wtfs(50).build();
-            rewardDao.save(reward);
+            //rewardDao.save(reward);
         });
 
         RewardRequest request = new RewardRequest("TEST_ID", "TEST_CODE");
@@ -54,7 +54,7 @@ public class RewardControllerIT extends BaseIT {
     public void getReward_ClaimedSecondTime_ReturnAlreadyClaimed() throws Exception {
         runInTransaction(() -> {
             Reward reward = Reward.builder().code("TEST_CODE").build();
-            rewardDao.save(reward);
+            //rewardDao.save(reward);
         });
 
         RewardRequest request = new RewardRequest("TEST_ID", "TEST_CODE");
@@ -70,7 +70,7 @@ public class RewardControllerIT extends BaseIT {
     public void getReward_UsesExceeded_ReturnExpired() throws Exception {
         runInTransaction(() -> {
             Reward reward = Reward.builder().code("TEST_CODE").usesLimit(0l).build();
-            rewardDao.save(reward);
+            //rewardDao.save(reward);
         });
 
         RewardRequest request = new RewardRequest("TEST_ID", "TEST_CODE");
@@ -86,7 +86,7 @@ public class RewardControllerIT extends BaseIT {
     public void getReward_LastUseRemained_ReturnReward() throws Exception {
         runInTransaction(() -> {
             Reward reward = Reward.builder().code("TEST_CODE").wtfs(50).usesLimit(1l).build();
-            rewardDao.save(reward);
+            //rewardDao.save(reward);
         });
 
         RewardRequest request = new RewardRequest("TEST_ID", "TEST_CODE");
@@ -102,7 +102,7 @@ public class RewardControllerIT extends BaseIT {
     public void getReward_ManyUsesRemained_ReturnReward() throws Exception {
         runInTransaction(() -> {
             Reward reward = Reward.builder().code("TEST_CODE").wtfs(50).usesLimit(10000l).build();
-            rewardDao.save(reward);
+            //rewardDao.save(reward);
         });
 
         RewardRequest request = new RewardRequest("TEST_ID", "TEST_CODE");
@@ -118,7 +118,7 @@ public class RewardControllerIT extends BaseIT {
     public void getReward_TimeLimitExpired_ReturnExpired() throws Exception {
         runInTransaction(() -> {
             Reward reward = Reward.builder().code("TEST_CODE").timeLimit(LocalDate.now().minusDays(1)).build();
-            rewardDao.save(reward);
+            //rewardDao.save(reward);
         });
 
         RewardRequest request = new RewardRequest("TEST_ID", "TEST_CODE");
@@ -134,7 +134,7 @@ public class RewardControllerIT extends BaseIT {
     public void getReward_TimeLimitForToday_ReturnReward() throws Exception {
         runInTransaction(() -> {
             Reward reward = Reward.builder().code("TEST_CODE").wtfs(50).timeLimit(LocalDate.now()).build();
-            rewardDao.save(reward);
+            //rewardDao.save(reward);
         });
 
         RewardRequest request = new RewardRequest("TEST_ID", "TEST_CODE");
@@ -150,7 +150,7 @@ public class RewardControllerIT extends BaseIT {
     public void getReward_TimeLimitForTommorow_ReturnReward() throws Exception {
         runInTransaction(() -> {
             Reward reward = Reward.builder().code("TEST_CODE").wtfs(50).timeLimit(LocalDate.now().plusDays(1)).build();
-            rewardDao.save(reward);
+            //rewardDao.save(reward);
         });
 
         RewardRequest request = new RewardRequest("TEST_ID", "TEST_CODE");
@@ -166,7 +166,7 @@ public class RewardControllerIT extends BaseIT {
     public void getReward_TimeLimitOkButNoUsesLeft_ReturnExpired() throws Exception {
         runInTransaction(() -> {
             Reward reward = Reward.builder().code("TEST_CODE").usesLimit(0l).timeLimit(LocalDate.now()).build();
-            rewardDao.save(reward);
+            //rewardDao.save(reward);
         });
 
         RewardRequest request = new RewardRequest("TEST_ID", "TEST_CODE");
@@ -182,7 +182,7 @@ public class RewardControllerIT extends BaseIT {
     public void getReward_OneUseLeftButTimeLimitExpired_ReturnExpired() throws Exception {
         runInTransaction(() -> {
             Reward reward = Reward.builder().code("TEST_CODE").usesLimit(1l).timeLimit(LocalDate.now().minusDays(1)).build();
-            rewardDao.save(reward);
+            //rewardDao.save(reward);
         });
 
         RewardRequest request = new RewardRequest("TEST_ID", "TEST_CODE");
@@ -198,7 +198,7 @@ public class RewardControllerIT extends BaseIT {
     public void getReward_TwoUsesLimit_ExpiredAfterTwoRequests() throws Exception {
         runInTransaction(() -> {
             Reward reward = Reward.builder().code("TEST_CODE").usesLimit(2l).build();
-            rewardDao.save(reward);
+            //rewardDao.save(reward);
         });
 
         RewardRequest request1 = new RewardRequest("TEST_ID1", "TEST_CODE");
@@ -218,7 +218,7 @@ public class RewardControllerIT extends BaseIT {
     public void getReward_TwoUsesLimit_SameUserRequestsDoNotCount() throws Exception {
         runInTransaction(() -> {
             Reward reward = Reward.builder().code("TEST_CODE").usesLimit(2l).build();
-            rewardDao.save(reward);
+            //rewardDao.save(reward);
         });
 
         RewardRequest request1 = new RewardRequest("TEST_ID1", "TEST_CODE");
