@@ -3,22 +3,24 @@ package wtf.wtfgames.wtfwords.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import wtf.wtfgames.wtfwords.dao.AcquiredRewardDao;
-import wtf.wtfgames.wtfwords.dao.RewardDao;
+import wtf.wtfgames.wtfwords.repository.AcquiredRewardRepository;
+import wtf.wtfgames.wtfwords.repository.RewardRepository;
 import wtf.wtfgames.wtfwords.model.AcquiredReward;
 import wtf.wtfgames.wtfwords.model.Reward;
+
+import java.util.Optional;
 
 @Service
 public class RewardService {
     @Autowired
-    RewardDao rewardDao;
+    RewardRepository rewardRepository;
 
     @Autowired
-    AcquiredRewardDao acquiredRewardDao;
+    AcquiredRewardRepository acquiredRewardRepository;
 
     @Transactional
-    public Reward getReward(String code) {
-        return rewardDao.getByCode(code.toUpperCase());
+    public Optional<Reward> getReward(String code) {
+        return rewardRepository.findByCode(code.toUpperCase());
     }
 
     @Transactional
@@ -27,17 +29,17 @@ public class RewardService {
             return false;
         }
 
-        return acquiredRewardDao.isRewardAquired(reward, userId);
+        return acquiredRewardRepository.existsByRewardAndUserId(reward, userId);
     }
 
     @Transactional
     public void claimReward(Reward reward, String userId) {
         AcquiredReward acquiredReward = new AcquiredReward(userId, reward);
-        //acquiredRewardDao.save(acquiredReward);
+        acquiredRewardRepository.save(acquiredReward);
 
         if (reward.getUsesLimit() != null) {
             reward.setUsesLimit(reward.getUsesLimit() - 1);
-            //rewardDao.save(reward);
+            rewardRepository.save(reward);
         }
     }
 }

@@ -10,6 +10,8 @@ import wtf.wtfgames.wtfwords.controller.type.RewardResponse;
 import wtf.wtfgames.wtfwords.model.Reward;
 import wtf.wtfgames.wtfwords.service.RewardService;
 
+import java.util.Optional;
+
 @RestController
 public class RewardController {
     @Autowired
@@ -18,22 +20,28 @@ public class RewardController {
     @RequestMapping(value = "reward_code", method = RequestMethod.POST)
     public RewardResponse getRewardByCode(@RequestBody RewardRequest request) {
         try {
-            Reward reward = rewardService.getReward(request.getCode());
+            Optional<Reward> reward = rewardService.getReward(request.getCode());
 
-            if (reward == null) {
-                return new RewardResponse();
-            } else if (reward.isExpired()) {
-                return RewardResponse.getExpiredResonse();
-            } else if (rewardService.isAlreadyClaimed(reward, request.getId())) {
-                return RewardResponse.getAlreadyClaimedResponse();
+            if (reward.isPresent()) {
+                return generateRewardResponse(reward.get(), request.getId());
             } else {
-                rewardService.claimReward(reward, request.getId());
-                return new RewardResponse(reward.getMessage(), reward.getWtfs());
+                return new RewardResponse();
             }
 
         } catch (Exception e) {
             e.printStackTrace();
             return new RewardResponse();
+        }
+    }
+
+    private RewardResponse generateRewardResponse(Reward reward, String userId) {
+        if (reward.isExpired()) {
+            return RewardResponse.getExpiredResonse();
+        } else if (rewardService.isAlreadyClaimed(reward, userId)) {
+            return RewardResponse.getAlreadyClaimedResponse();
+        } else {
+            rewardService.claimReward(reward, userId);
+            return new RewardResponse(reward.getMessage(), reward.getWtfs());
         }
     }
 }

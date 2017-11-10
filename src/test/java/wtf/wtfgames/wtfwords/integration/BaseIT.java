@@ -13,9 +13,9 @@ import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.web.client.RestTemplate;
 import wtf.wtfgames.wtfwords.Application;
-import wtf.wtfgames.wtfwords.dao.AcquiredRewardDao;
-import wtf.wtfgames.wtfwords.dao.PersonalRewardDao;
-import wtf.wtfgames.wtfwords.dao.RewardDao;
+import wtf.wtfgames.wtfwords.repository.AcquiredRewardRepository;
+import wtf.wtfgames.wtfwords.repository.PersonalRewardRepository;
+import wtf.wtfgames.wtfwords.repository.RewardRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class, webEnvironment = WebEnvironment.DEFINED_PORT)
@@ -56,20 +56,20 @@ public abstract class BaseIT {
     }
 
     @Autowired
-    AcquiredRewardDao acquiredRewardDao;
+    AcquiredRewardRepository acquiredRewardRepository;
 
     @Autowired
-    RewardDao rewardDao;
+    RewardRepository rewardRepository;
 
     @Autowired
-    PersonalRewardDao personalRewardDao;
+    PersonalRewardRepository personalRewardRepository;
 
     @Before
     public void clearDataFromDatabase() {
         runInTransaction(() -> {
-            /*acquiredRewardDao.clear();
-            rewardDao.clear();
-            personalRewardDao.clear();*/
+            acquiredRewardRepository.deleteAll();
+            rewardRepository.deleteAll();
+            personalRewardRepository.deleteAll();
         });
     }
 }
