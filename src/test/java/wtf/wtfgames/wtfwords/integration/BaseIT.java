@@ -8,9 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.TransactionCallbackWithoutResult;
-import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.web.client.RestTemplate;
 import wtf.wtfgames.wtfwords.Application;
 import wtf.wtfgames.wtfwords.repository.AcquiredRewardRepository;
@@ -28,9 +25,6 @@ public abstract class BaseIT {
     @Autowired @Qualifier("testRestTemplate")
     private RestTemplate rest;
 
-    @Autowired
-    TransactionTemplate transactionTemplate;
-
     private String getBaseUrl() {
         return baseUrl + ":" + port + "/";
     }
@@ -39,20 +33,6 @@ public abstract class BaseIT {
         String result = rest.postForObject(getBaseUrl() + url, request, String.class);
         System.out.println(result);
         return result;
-    }
-
-    protected void runInTransaction(Runnable function) {
-        transactionTemplate.execute(new TransactionCallbackWithoutResult() {
-            @Override
-            protected void doInTransactionWithoutResult(TransactionStatus transactionStatus) {
-                try {
-                    function.run();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    transactionStatus.setRollbackOnly();
-                }
-            }
-        });
     }
 
     @Autowired
@@ -66,10 +46,8 @@ public abstract class BaseIT {
 
     @Before
     public void clearDataFromDatabase() {
-        runInTransaction(() -> {
-            acquiredRewardRepository.deleteAll();
-            rewardRepository.deleteAll();
-            personalRewardRepository.deleteAll();
-        });
+        acquiredRewardRepository.deleteAll();
+        rewardRepository.deleteAll();
+        personalRewardRepository.deleteAll();
     }
 }

@@ -18,12 +18,10 @@ public class RewardService {
     @Autowired
     AcquiredRewardRepository acquiredRewardRepository;
 
-    @Transactional
     public Optional<Reward> getReward(String code) {
         return rewardRepository.findByCode(code.toUpperCase());
     }
 
-    @Transactional
     public boolean isAlreadyClaimed(Reward reward, String userId) {
         if (reward == null) {
             return false;

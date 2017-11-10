@@ -18,13 +18,6 @@ import javax.net.ssl.SSLContext;
 @Configuration
 public class TestAppConfig {
     @Bean
-    public TransactionTemplate transactionTemplate(PlatformTransactionManager ptm) {
-        TransactionTemplate transactionTemplate = new TransactionTemplate();
-        transactionTemplate.setTransactionManager(ptm);
-        return transactionTemplate;
-    }
-
-    @Bean
     RestTemplate testRestTemplate() throws Exception {
         SSLContext sslContext = SSLContexts.custom().loadTrustMaterial(null, new TrustSelfSignedStrategy()).build();
         SSLConnectionSocketFactory connectionFactory = new SSLConnectionSocketFactory(sslContext, new NoopHostnameVerifier());

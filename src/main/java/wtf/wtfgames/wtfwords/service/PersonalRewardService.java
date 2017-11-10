@@ -13,7 +13,6 @@ public class PersonalRewardService {
     @Autowired
     PersonalRewardRepository personalRewardRepository;
 
-    @Transactional
     public PersonalReward getPersonalReward(String userId) {
         List<PersonalReward> personalRewards = personalRewardRepository.findByUserIdAndAcquiredIsFalse(userId);
 
